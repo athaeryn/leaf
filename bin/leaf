@@ -7,4 +7,5 @@ $:.unshift(PATH)
 
 require 'leaf'
 
-Leaf::Main.new
+leaf = Leaf::Main.new ARGV
+leaf.run
