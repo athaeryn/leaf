@@ -1,7 +1,8 @@
 #!/bin/sh
 
-command git "$@" && echo "$PWD" >> ~/.leaf-pile
-cp ~/.leaf-pile ~/.leaf-temp
-sort -u ~/.leaf-temp -o ~/.leaf-pile
-rm ~/.leaf-temp
+command git "$@" && \
+    echo "$PWD" >> ~/.leaf-pile && \
+    cp ~/.leaf-pile ~/.leaf-temp && \
+    sort -u ~/.leaf-temp -o ~/.leaf-pile && \
+    rm ~/.leaf-temp
 
