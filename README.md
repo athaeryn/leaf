@@ -2,9 +2,9 @@
 
 _"No commits left behind."_
 
-**NOTE: This is a work in progress, and the functionality described below is
-mostly a roadmap. Currently, `leaf-collector` is working, but that's about it.
-Check back, it should be done soon!**
+**NOTE: This is a work in progress, and some of the functionality described
+below may not have been implemented. I'd really appreciate feedback of any
+variety!**
 
 Leaf is a wrapper for git that keeps track of where your repositories are, then
 tells you if you have any changes you forgot to push when you tell it you're
@@ -25,12 +25,12 @@ This is the part that you interact with. When you run
 
     $ leaf
 
-in your terminal, `leaf` will give you a nice report of any commits you may
-have forgotten to push. If the name `leaf` doesn't sit well with you, just
-rename it, silly.
+in your terminal, `leaf` will give you a nice report of things that might need
+your attention.
 
 You can use the `-t` option to limit the output to a newline delimited list of
-directories that need to be pushed. Useful with `xargs`, perhaps?
+directories that need to be pushed. Useful with `xargs`, perhaps (_not yet
+implemented_)?
 
 ## leaf-collector
 
