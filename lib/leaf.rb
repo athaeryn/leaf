@@ -15,7 +15,7 @@ module Leaf
             if @report.empty?
                 puts "Everything looks good to leaf!"
             else
-                puts "Leaf found some problems:\n\n"
+                puts "Leaf thinks you should look at some things:\n\n"
                 puts @report
             end
         end
