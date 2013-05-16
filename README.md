@@ -29,8 +29,8 @@ in your terminal, `leaf` will give you a nice report of things that might need
 your attention.
 
 You can use the `-t` option to limit the output to a newline delimited list of
-directories that need to be pushed. Useful with `xargs`, perhaps (_not yet
-implemented_)?
+directories that need to be pushed. Useful with `xargs`, perhaps? (not yet
+implemented)
 
 ## leaf-collector
 
