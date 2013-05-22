@@ -37,6 +37,9 @@ module Leaf
                 if status.include? 'not staged'
                     report += "\t-> Unstaged changes!\n"
                 end
+                if status.include? 'untracked'
+                    report += "\t-> Untracked files!\n"
+                end
                 remote = `git remote -v`
                 if remote.empty?
                     report += "\t-> No remotes set!\n"
