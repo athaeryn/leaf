@@ -14,9 +14,11 @@ module Leaf
             @report = get_report
             if @report.empty?
                 puts "Everything looks good to leaf!"
+                exit 0
             else
                 puts "Leaf thinks you should look at some things:\n\n"
                 puts @report
+                exit 1
             end
         end
 
