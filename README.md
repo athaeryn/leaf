@@ -2,20 +2,19 @@
 
 _"No commits left behind."_
 
-**NOTE: This is a work in progress, and some of the functionality described
-below may not have been implemented. I'd really appreciate feedback of any
-variety!**
+Leaf keeps an eye on your git repositories. Before you leave your computer,
+type `leaf` in the terminal, and leaf will let you know if there's anything you
+might want to look at before you go. It will warn you about:
 
-Leaf is a wrapper for git that keeps track of where your repositories are, then
-tells you if you have any changes you forgot to push when you tell it you're
-leafing (sorry). It will also warn you if there are any repositories that don't
-have remotes set up.
+- Unpushed commits
+- Unstaged changes
+- Uncommitted changes
+- Untracked files
+- Repos with no remotes set
 
-It was built to address a problem in my workflow, so that if I forget to push
-any changes from my work machine when I leaf work, I'm not totally screwed when
-I get home and can't pull any of the work I did that day. This is like tying a
-bow on your finger, except more informative and less damaging to your
-circulation.
+It was built to stop me leaving commits stranded on my work computer when I
+left the office. It's like tying a bow on your finger, but more informative and
+less damaging to your circulation.
 
 It has two parts: `leaf` and `leaf-collector`.
 
@@ -28,43 +27,49 @@ This is the part that you interact with. When you run
 in your terminal, `leaf` will give you a nice report of things that might need
 your attention.
 
-You can use the `-t` option to limit the output to a newline delimited list of
-directories that need to be pushed. Useful with `xargs`, perhaps? (not yet
-implemented)
-
 ## leaf-collector
 
-This is the one that wraps git. It just sits there and waits for you to use
-`git`, at which point it leaps into action and ferociously logs the current
-directory for `leaf` to look at later.
+This is the glue that wraps git and makes everything work. It just sits there
+and waits for you to use `git`, at which point it leaps into action and
+ferociously logs the current directory for `leaf` to look at later. Keep in
+mind that if you don't use `git` somewhere inside a repo, `leaf` won't know
+that it exists.
 
-The directories `leaf-collector` logs for you go in the file `~/.leaf-pile`.
-You can always manually add or remove directories from the leaf pile if you
-want to do so.
+_(Part of my zsh prompt runs `git` to check the status of the current repo, so
+this happens automatically for me. You might want to think about setting up
+something like that if you haven't already.)_
+
+`leaf-collector` logs directories in `~/.leaf-pile`.  You can always manually
+add or remove directories from the leaf pile if you want to do so.
 
 ## Installation
 
+Clone this repository (you'll want to put it somewhere where it can live
+forever, since you don't want to have symlinks that point to nothing if you
+ever move the directory).
+
 ### leaf
 
-Symlink `leaf` to somewhere in your path. How easy is that?
+Symlink `leaf` to somewhere in your path (e.g. mine is at `~/bin/leaf`). How
+easy is that?
 
 ### leaf-collector
 
-You just need to alias `git` to `leaf-collector`. The way I do this is to
-symlink `leaf-collector` into `~/bin`, then set up this alias:
+You need to alias `git` to `leaf-collector`. The way I do this is to symlink
+`leaf-collector` into `~/bin`, then set up this alias:
 
     alias git="~/bin/leaf-collector"
 
 Obviously you'll need to `source ~/.zshrc` or `source ~/.bashrc` or open a new
-terminal or something to get it to start working.
+terminal or something to get it to start working, but you knew that.
 
 ## Usage
 
-Once you've set up everything, `leaf-collector` will just do its thing, and you
-don't need to worry about it at all. What you do need to worry about is running
-`leaf` when you want to see if you have unpushed commits.
+Once you've got everything in place, `leaf-collector` will just do its thing,
+and you don't need to worry about it at all. All you need to do is run `leaf`
+whenever you want to know the status of your repositories.
 
 ## Contributing/Feedback
 
-Help make it better. Send me an email (<hello@mrmikea.com>) or fork and send
-pull requests or open an issue or something. You know what to do.
+Help make it better! Send me an email (<hello@mrmikea.com>) or open an issue or
+fork and send pull requests or something. You know what to do.
