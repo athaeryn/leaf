@@ -48,6 +48,10 @@ Clone this repository (you'll want to put it somewhere where it can live
 forever, since you don't want to have symlinks that point to nothing if you
 ever move the directory).
 
+Example:
+
+    $ git clone https://github.com/athaeryn/leaf ~/leaf
+
 ### leaf
 
 Symlink `leaf` to somewhere in your path (e.g. mine is at `~/bin/leaf`). How
@@ -67,9 +71,11 @@ terminal or something to get it to start working, but you knew that.
 
 Once you've got everything in place, `leaf-collector` will just do its thing,
 and you don't need to worry about it at all. All you need to do is run `leaf`
-whenever you want to know the status of your repositories.
+whenever you want to know the status of your repositories. After all, `leaf`
+exists to make your life easier.
 
 ## Contributing/Feedback
 
 Help make it better! Send me an email (<hello@mrmikea.com>) or open an issue or
-fork and send pull requests or something. You know what to do.
+fork and send pull requests or make smoke signals or ask your grandparents how
+to use a fax machine. You know what to do.
