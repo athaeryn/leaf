@@ -7,17 +7,29 @@ module Leaf
             @options = Leaf::ArgParser.parse args
         end
 
+        def green string
+            "\e[38;5;2m" + string + "\e[0m"
+        end
+
+        def yellow string
+            "\e[38;5;11m" + string + "\e[0m"
+        end
+
+        def red string
+            "\e[38;5;9m" + string + "\e[0m"
+        end
+
         def run
             @cleaner_results = get_leaf_pile
             @leaf_pile = @cleaner_results[:leaf_pile]
 
             @report = get_report
             if @report.empty?
-                puts "Everything looks good to leaf!"
+                puts green("Everything looks good to leaf!\n")
                 exit 0
             else
-                puts "Leaf thinks you should look at some things:\n\n"
-                puts @report
+                puts red("Leaf thinks you should look at some things:\n")
+                puts yellow(@report)
                 exit 1
             end
         end
