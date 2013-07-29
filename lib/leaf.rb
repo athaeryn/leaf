@@ -71,6 +71,8 @@ module Leaf
                 pile_file = File.read(File.expand_path('~/.leaf-pile'))
             rescue
                 puts "Error: no ~/.leaf-pile!"
+                `touch ~/.leaf-pile`
+                this.run
                 exit 1
             end
             Cleaner.clean pile_file
