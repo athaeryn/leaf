@@ -1,0 +1,73 @@
+#!/bin/bash
+
+function alert() {
+  echo "  -> $@"
+}
+
+function is_empty() {
+  [ -z "$@" ]
+}
+
+function is_not_empty() {
+  [ ! -z "$@" ]
+}
+
+
+function has_unpushed() {
+  is_not_empty "$(echo "$@" | grep "branch is ahead")"
+}
+
+function has_untracked() {
+  is_not_empty "$(echo "$@" | grep "Untracked")"
+}
+
+function has_uncommitted() {
+  is_not_empty "$(echo "$@" | grep "Changes to be committed")"
+}
+
+function has_no_remotes() {
+  is_empty "$@"
+}
+
+
+function check_repo() {
+  local path=$1; shift
+
+  cd "$path"
+  local GIT_ST=$(git status 2>/dev/null)
+  local GIT_REMOTES=$(git remote -v 2>/dev/null)
+
+  local warnings=""
+
+  if [ ! -z "$GIT_ST" ]; then
+    has_unpushed "$GIT_ST" \
+      && warnings="${warnings}  -> Unpushed commits\n"
+
+    has_untracked "$GIT_ST" \
+      && warnings="${warnings}  -> Untracked files\n"
+
+    has_uncommitted "$GIT_ST" \
+      && warnings="${warnings}  -> Uncommitted changes\n"
+
+    has_no_remotes "$GIT_REMOTES" \
+      && warnings="${warnings}  -> No remotes\n"
+
+    if [ ! -z "$warnings" ]; then
+      echo "$REPO_PATH"
+      printf "$warnings"
+      echo "$SEPARATOR"
+    fi
+  fi
+}
+
+
+function leaf_main() {
+  local SEPARATOR="----"
+  local repos=$(find ~ -path ~/.rbenv -prune -o -name .git | sed 's/\/.git//')
+  for REPO_PATH in $repos
+  do
+    check_repo "$REPO_PATH"
+  done
+}
+
+leaf_main
