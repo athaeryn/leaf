@@ -41,16 +41,16 @@ function check_repo() {
 
   if [ ! -z "$GIT_ST" ]; then
     has_unpushed "$GIT_ST" \
-      && warnings="${warnings}  -> Unpushed commits\n"
+      && warnings="${warnings}  - Unpushed commits\n"
 
     has_untracked "$GIT_ST" \
-      && warnings="${warnings}  -> Untracked files\n"
+      && warnings="${warnings}  - Untracked files\n"
 
     has_uncommitted "$GIT_ST" \
-      && warnings="${warnings}  -> Uncommitted changes\n"
+      && warnings="${warnings}  - Uncommitted changes\n"
 
     has_no_remotes "$GIT_REMOTES" \
-      && warnings="${warnings}  -> No remotes\n"
+      && warnings="${warnings}  - No remotes\n"
 
     if [ ! -z "$warnings" ]; then
       echo "$REPO_PATH" | sed "s#$HOME#~#"
