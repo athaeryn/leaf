@@ -55,15 +55,18 @@ function check_repo() {
     if [ ! -z "$warnings" ]; then
       echo "$REPO_PATH"
       printf "$warnings"
-      echo "$SEPARATOR"
+      echo ""
     fi
   fi
 }
 
 
 function leaf_main() {
-  local SEPARATOR="----"
-  local repos=$(find ~ -path ~/.rbenv -prune -o -name .git | sed 's/\/.git//')
+  if [ -z "$LEAF_PATH" ]; then
+    echo "You must set a \$LEAF_PATH"
+    exit 1
+  fi
+  local repos=$(find "$LEAF_PATH" -type d -name .git | sed 's/\/.git//')
   for REPO_PATH in $repos
   do
     check_repo "$REPO_PATH"

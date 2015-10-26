@@ -23,6 +23,7 @@ Copy `leaf` to somewhere in your `$PATH`.
 
 ## Usage
 
-All you need to do is run `leaf` whenever you want to know the status of your
-repositories.
+You need to tell leaf where to look by setting an environment variable named
+`LEAF_PATH`. Once you've done this, all you need to do is run `leaf` whenever
+you want to know the status of your repositories.
 
