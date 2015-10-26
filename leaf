@@ -53,7 +53,7 @@ function check_repo() {
       && warnings="${warnings}  -> No remotes\n"
 
     if [ ! -z "$warnings" ]; then
-      echo "$REPO_PATH"
+      echo "$REPO_PATH" | sed "s#$HOME#~#"
       printf "$warnings"
       echo ""
     fi
